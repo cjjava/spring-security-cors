@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="spring-security">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<style type="text/css">
+		.container{
+			padding-top: 50px;
+		}
+	</style>
+</head>
+<body ng-controller="IndexController">
+	<div class="container">
+		<div class="row">
+			<h3>Spring Security 本地调用</h3>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+						<label for="username" class="col-md-2 control-label">Username:</label> 
+						<div class="col-md-6">
+							<input type="text" class="form-control" id="username" name="username" ng-model="credentials.username"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="password" class="col-md-2 control-label">Password:</label>
+						<div class="col-md-6">
+							<input type="password" class="form-control" id="password" name="password" ng-model="credentials.password"/>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-offset-2 col-md-10">
+							<a class="btn btn-primary" ng-click="resource()">resource</a>
+							<a class="btn btn-primary" ng-click="login()">login</a>
+							<a class="btn btn-primary" ng-click="logout()">logout</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<span ng-bind="message" style="color:red;"></span>
+		</div>
+		<div class="row">
+			<h1>Greeting</h1>
+			<div>
+				<p>The ID is {{greeting.id}}</p>
+				<p>The content is {{greeting.content}}</p>
+				<p>The sessionid is {{greeting.sessionId}}</p>
+				<p>The username is {{greeting.user.username}}</p>
+			</div>
+		</div>
+	</div>
+	
+	<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+	<script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="index.js"></script>
+</body>
+</html>

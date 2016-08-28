@@ -1,0 +1,35 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.0.RELEASE'
+	}
+	repositories {
+		mavenLocal()
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+	
+subprojects{
+    group 'com.cjoop'
+    version '1.0-SNAPSHOT'
+	
+    apply plugin: 'java'
+    apply plugin: 'idea'
+	apply plugin: 'eclipse'
+    apply plugin: 'spring-boot'
+
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+
+    repositories {
+		mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        compile("org.springframework.boot:spring-boot-starter-web")
+        testCompile("org.springframework.boot:spring-boot-starter-test")
+    }
+}
