@@ -3,3 +3,13 @@
 /cors-ui/cors-ui.iml
 /cors-resource/cors-resource.iml
 /build/
+/.classpath
+/.gradle
+/.settings
+/.project
+/cors-resource/.settings
+/cors-ui/.settings
+/cors-ui/.classpath
+/cors-ui/.project
+/cors-resource/.classpath
+/cors-resource/.project
