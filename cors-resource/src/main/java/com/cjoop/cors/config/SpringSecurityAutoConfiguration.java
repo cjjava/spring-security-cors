@@ -29,21 +29,19 @@ public class SpringSecurityAutoConfiguration extends WebSecurityConfigurerAdapte
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		String loginProcessingUrl = "/j_spring_security_check";
-		http.cors();//主要是这行代码完成了跨域认证的支持
-		http.csrf().disable()
-		.authorizeRequests()
+		http.cors();
+		http.csrf().disable();
+		
+		http.authorizeRequests()
 			.antMatchers("/index.html", "/index.js","/","/favicon.ico").permitAll()
-			.anyRequest().authenticated()
-			.and()
-		.formLogin()
-			.loginPage("/login")
-			.loginProcessingUrl(loginProcessingUrl)
+			.anyRequest().authenticated();
+		
+		http.formLogin()
 			.successHandler(authenticationSuccessHandler)
 			.failureHandler(authenticationFailureHandler)
-			.permitAll()
-			.and()
-		.logout().logoutSuccessHandler(logoutSuccessHandler)
+			.permitAll();
+		
+		http.logout().logoutSuccessHandler(logoutSuccessHandler)
 			.permitAll();
 	}
 	

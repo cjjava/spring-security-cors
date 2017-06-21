@@ -9,7 +9,7 @@
 	.controller('IndexController', ['$scope','$http','$cookies',function($scope,$http,$cookies) {
 	    $scope.credentials = {};
 	    $scope.login = function(){
-	    	return $http.post(contextPath+"/j_spring_security_check",null,{
+	    	return $http.post(contextPath+"/login",null,{
 	            params: $scope.credentials
 	        }).then(function (resp) {
 	        	var result = resp.data;
