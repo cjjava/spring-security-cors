@@ -11,12 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-import org.springframework.web.util.WebUtils;
 
-import com.cjoop.cors.domain.User;
 import com.cjoop.cors.vo.Message;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,17 +26,15 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws ServletException, IOException {
-		UserDetails principal = (UserDetails) authentication.getPrincipal();
-		User user = new User();
-		user.setUsername(principal.getUsername());
-		WebUtils.setSessionAttribute(request, "user", user);
+		String username = authentication.getName();
 		Message message = new Message();
 		message.setText("认证成功");
-		message.setData(WebUtils.getSessionId(request));
+		message.setData(request.getSession().getId());
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 		try (PrintWriter out = response.getWriter()) {
 			out.append(objectMapper.writeValueAsString(message));
 		}
+		logger.info("username:" + username + " authentication success");
 	}
 }

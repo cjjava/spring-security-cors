@@ -1,5 +1,6 @@
 package com.cjoop.cors.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -16,11 +17,12 @@ import com.cjoop.cors.domain.User;
 public class ResourceController {
 	
 	@RequestMapping("/resource")
-	public Map<String,Object> home(HttpServletRequest request) {
+	public Map<String,Object> home(HttpServletRequest request,Principal principal) {
 		Map<String,Object> model = new HashMap<String,Object>();
 		model.put("id", UUID.randomUUID().toString());
 		model.put("content", "Hello World");
-		User user = (User) WebUtils.getSessionAttribute(request, "user");
+		User user = new User();
+		user.setUsername(principal.getName());
 		model.put("user", user);
 		model.put("sessionId", WebUtils.getSessionId(request));
 		return model;
